@@ -13,14 +13,6 @@ namespace Login
 {
     public partial class loginform : Form
     {
-        const string ConnectionString = "Data Source=Users.db";
-        public int id = -1;
-        public string QuickHash(string input)
-        {
-            var inputBytes = Encoding.UTF8.GetBytes(input);
-            var inputHash = SHA256.HashData(inputBytes);
-            return Convert.ToHexString(inputHash);
-        }
         public loginform()
         {
             InitializeComponent();
@@ -102,9 +94,11 @@ namespace Login
                 this.DefWndProc(ref msg);
             }
         }
+        //verifica daca avem mai sus de windows vista sau 7
         private bool IsDWMCompositionEnabled() =>
             Environment.OSVersion.Version.Major >= 6 && Dwm.IsCompositionEnabled();
 
+        //ne deschide form-ul cand apasam pe linkul de Register
         private void registerlink_Click(object sender, EventArgs e)
         {
             Register register = new Register(this);
@@ -112,6 +106,7 @@ namespace Login
             this.Visible = false;
         }
 
+        //buttonul de inchidere a aplicatiei
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -21,6 +21,7 @@ namespace Login.view
         {
             InitializeComponent();
             _form = form;
+            //astea nu le sterge caci sunt pentru background sa fie transparent
             if (IsDWMCompositionEnabled())
             {
                 if (Environment.OSVersion.Version.Major > 6)
@@ -45,14 +46,11 @@ namespace Login.view
             usernametext.Leave += TextBox_Leave;
             this.Shown += focus;
         }
-        public Register() 
-        {
-
-        }
         private void focus(object sender, EventArgs e)
         {
             btregister.Focus();
         }
+        //verifica username-ul daca se regaseste in lista
         private void verifyusername(object sender, EventArgs e)
         {
             bool check = false;
@@ -70,6 +68,7 @@ namespace Login.view
             }
             if (usernametext.ForeColor == SystemColors.GrayText||usernametext.Text=="Username"||usernametext.Text=="") usernamechecker.Text = null;
         }
+        //Ne muta daca apasam pe linkul de la login deschindune form-ul de login
         private void loginlink_Click(object sender, EventArgs e)
         {
             _form.Visible = true;
@@ -77,6 +76,7 @@ namespace Login.view
         }
         private bool IsDWMCompositionEnabled() =>
             Environment.OSVersion.Version.Major >= 6 && Dwm.IsCompositionEnabled();
+        //rescrie cuvantul Username daca am iesit din textbox si lam lasat gol
         private void TextBox_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(usernametext.Text))
@@ -85,6 +85,7 @@ namespace Login.view
                 usernametext.ForeColor = System.Drawing.SystemColors.GrayText; // Set text color to gray
             }
         }
+        //sterge totul din textbox daca dam click pe el doar daca cuvantul este Username
         private void TextBox_Enter(object sender, EventArgs e)
         {
             if (usernametext.Text == "Username")
@@ -93,6 +94,7 @@ namespace Login.view
                 usernametext.ForeColor = System.Drawing.Color.White; // Set text color to default
             }
         }
+        //rescrie cuvantul Password daca am iesit din textbox si lam lasat gol
         private void TextBox_Leave2(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(passwordtext.Text))
@@ -102,6 +104,7 @@ namespace Login.view
                 passwordtext.ForeColor = System.Drawing.SystemColors.GrayText; // Set text color to gray
             }
         }
+        //sterge totul din textbox daca dam click pe el doar daca cuvantul este  Password
         private void TextBox_Enter2(object sender, EventArgs e)
         {
             if (passwordtext.Text == "Password")
@@ -111,6 +114,7 @@ namespace Login.view
                 passwordtext.ForeColor = System.Drawing.Color.White; // Set text color to default
             }
         }
+        //Poti face drag and drop cu ajutorul acestei functii
         private void lblMoveForm_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -127,6 +131,7 @@ namespace Login.view
                 this.DefWndProc(ref msg);
             }
         }
+        //rescrie cuvantul Repeat Password daca am iesit din textbox si lam lasat gol
         private void TextBox_Leave3(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(rptpsswd.Text))
@@ -136,6 +141,7 @@ namespace Login.view
                 rptpsswd.ForeColor = System.Drawing.SystemColors.GrayText; // Set text color to gray
             }
         }
+        //sterge totul din textbox daca dam click pe el doar daca cuvantul este Repead Password
         private void TextBox_Enter3(object sender, EventArgs e)
         {
             if (rptpsswd.Text == "Repeat Password")
@@ -145,6 +151,7 @@ namespace Login.view
                 rptpsswd.ForeColor = System.Drawing.Color.White; // Set text color to default
             }
         }
+        //se activeaza doar atunci cand dam click pe button care face verificarea
         private void e_Click(object sender, EventArgs e)
         {
             if (rptpsswd.ForeColor == SystemColors.GrayText || passwordtext.ForeColor == SystemColors.GrayText)MessageBox.Show("Dont leave empty inputs");
