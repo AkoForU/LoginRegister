@@ -18,7 +18,7 @@ Features
 Prerequisites
 
     Operating System: Windows 7 or Windows 10.
-    .NET Framework: Ensure the appropriate version is installed.
+    .NET 8 or later 
     Development Environment: Visual Studio.
 
 Installation
